@@ -7,8 +7,19 @@ class SrtToArrayTool
 {
 
 
-    public static function getArrayByFile(string $file): array
+    /**
+     * @param string $file
+     * @param array $options
+     *
+     *          - startEndUnit: s|ms = s
+     *                  the unit of both start and end properties (second or millisecond).
+     *
+     * @return array
+     */
+    public static function getArrayByFile(string $file, array $options = []): array
     {
+        $unit = $options['startEndUnit']??'s';
+
 
         $ret = [];
 
@@ -37,11 +48,18 @@ class SrtToArrayTool
                     $end = str_replace(',', '.', trim($p[1]));
                     $startTime = self::toMilliSeconds(str_replace('.', ':', $start));
                     $endTime = self::toMilliSeconds(str_replace('.', ':', $end));
-                    $item['start'] = $startTime / 1000;
-                    $item['end'] = $endTime / 1000;
+                    $duration = $endTime - $startTime;
+                    
+                    if('s' === $unit){
+                        $startTime /= 1000;
+                        $endTime /= 1000;
+                    }
+                    
+                    $item['start'] = $startTime ;
+                    $item['end'] = $endTime;
                     $item['startString'] = $start;
                     $item['endString'] = $end;
-                    $item['duration'] = $endTime - $startTime;
+                    $item['duration'] = $duration;
                     $n++;
                 }
                 else {
