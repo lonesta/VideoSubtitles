@@ -19,6 +19,7 @@ class SrtToArrayTool
     public static function getArrayByFile(string $file, array $options = []): array
     {
         $unit = $options['startEndUnit']??'s';
+        $defaultItem = $options['defaultItem']??[];
 
 
         $ret = [];
@@ -32,7 +33,7 @@ class SrtToArrayTool
         };
 
         $c = 0;
-        $item = [];
+        $item = $defaultItem;
         $text = '';
         $n = 0;
         foreach ($gen($file) as $line) {
@@ -75,6 +76,7 @@ class SrtToArrayTool
                 if (0 !== $n) {
                     $item['text'] = $text;
                     $ret[] = $item;
+                    $item = $defaultItem;
                     $text = '';
                     $n = 0;
                 }

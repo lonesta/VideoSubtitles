@@ -57,6 +57,14 @@ The following options are available:
     
     Whether the start and end units should be returned as seconds or milliseconds
     
+- defaultItem: array,
+
+    default=[]
+    
+    You can use this option to decorate the items with custom properties.
+    The key/value pairs that you define will be part of every item.
+
+
     
 
 ```php
@@ -78,6 +86,10 @@ az($ret);
 
 History Log
 ------------------
+    
+- 1.2.0 -- 2016-03-15
+
+    - add defaultItem option
     
 - 1.1.0 -- 2016-03-15
 
