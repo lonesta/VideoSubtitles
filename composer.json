@@ -1,0 +1,17 @@
+{
+    "name": "lonesta/VideoSubtitles",
+    "description": "This is simple Video Subtitles to array.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ilya",
+            "email": "mini223@yandex.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "VideoSubtitles\\": "src/"
+        }
+    }
+}
